@@ -2,11 +2,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 </head>
-<body>
-static
-<form method="post" action="/api/csv/upload" enctype="multipart/form-data">
-    <input type="file" name="file" id="file" accept=".csv" > CSV File To Upload<br />
-    <input type="submit" />
+<body background="grey">
+<h3>Import csv file with users data:</h3>
+<form action="/v1/upload" enctype="multipart/form-data" method="post">
+    <input accept=".csv" id="file" name="file" type="file"><br/>
+    <input type="submit" value="Send File"/>
 </form>
 </body>
 </html>

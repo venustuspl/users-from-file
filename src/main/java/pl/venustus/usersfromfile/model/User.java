@@ -1,12 +1,8 @@
 package pl.venustus.usersfromfile.model;
 
-import com.sun.istack.NotNull;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @NoArgsConstructor
@@ -19,24 +15,25 @@ import java.time.LocalDate;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @NotNull
-    private String first_name;
+    @Column(name = "first_name")
+    private String firstName;
 
-    @NotNull
-    private String last_name;
+    @Column(name = "last_name")
+    private String lastName;
 
-    @NotNull
-    private LocalDate birth_date;
+    @Column(name = "birth_date")
+    private LocalDate birthDate;
 
-    @NotNull
-    private String phone_no;
+    @Column(name = "phone_no")
+    private String phoneNo;
 
-    public User(String first_name, String last_name, LocalDate birth_date, String phone_no) {
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.birth_date = birth_date;
-        this.phone_no = phone_no;
+    public User(String firstName, String lastName, LocalDate birthDate, String phoneNo) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.phoneNo = phoneNo;
     }
 }
