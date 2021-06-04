@@ -28,15 +28,18 @@ public class UserService {
     @Transactional
     public void save(MultipartFile file) {
         try {
+            LOGGER.log(Level.INFO, "Started users saving");
             List<User> users = UserHelper.csvToUsers(file.getInputStream());
             for (User user : users) {
                 if (!repository.findAllByPhoneNo(user.getPhoneNo()).isEmpty()) {
-                    LOGGER.log(Level.WARNING, user.toString(), " will not be saved because his phone number exists in database");
+                    LOGGER.log(Level.WARNING, "Ended " + user + " will not be saved because his phone number exists in database");
                     continue;
                 }
                 repository.save(user);
+                LOGGER.log(Level.INFO, "Ended " + user + " saving");
             }
         } catch (IOException e) {
+            LOGGER.log(Level.WARNING, "Ended saving, problems was found");
             throw new StoreException("Fail to store csv data: " + e.getMessage());
         }
     }

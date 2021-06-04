@@ -15,6 +15,7 @@ public class UserFieldValidator {
     }
 
     public boolean isCSVRecordValidForSave(Integer rowNumber, String firstName, String lastName, String birthDate, String phoneNumber) {
+        LOGGER.log(Level.INFO, "Started row " + rowNumber + " validation");
         var logMessage = new StringBuilder();
         if (firstName.isEmpty()) {
             logMessage.append(" first_name is empty");
@@ -30,8 +31,10 @@ public class UserFieldValidator {
         }
         if (logMessage.length() != 0) {
             LOGGER.log(Level.WARNING, "Row " + rowNumber + " " + firstName + " " + lastName + " " + birthDate + " " + phoneNumber + " will not be saved, because " + logMessage);
+            LOGGER.log(Level.INFO, "Ended " + rowNumber + " validation, problems was found");
             return false;
         }
+        LOGGER.log(Level.WARNING, "Ended field validation, problems wasn't found");
         return true;
     }
 }
