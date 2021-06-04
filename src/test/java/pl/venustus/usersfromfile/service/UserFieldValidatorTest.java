@@ -33,6 +33,6 @@ class UserFieldValidatorTest {
         String phoneNumber = "123456789";
         //when
         //then
-        assertThat(userFieldValidator.isCSVRecordValidForSave(firstName, lastName, birthDate, phoneNumber)).isTrue();
+        assertThat(userFieldValidator.isCSVRecordValidForSave(1, firstName, lastName, birthDate, phoneNumber)).isTrue();
     }
 }

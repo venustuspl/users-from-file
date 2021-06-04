@@ -34,6 +34,7 @@ public class UserHelper {
 
     public static List<User> csvToUsers(InputStream is) {
         var userFieldValidator = new UserFieldValidator();
+        var rowNumber = 1;
 
         try (var fileReader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
              var csvParser = new CSVParser(fileReader,
@@ -43,7 +44,7 @@ public class UserHelper {
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
 
             for (CSVRecord csvRecord : csvRecords) {
-                if (userFieldValidator.isCSVRecordValidForSave(csvRecord.get(0), csvRecord.get(1), csvRecord.get(2), csvRecord.get(3))) {
+                if (userFieldValidator.isCSVRecordValidForSave(rowNumber, csvRecord.get(0), csvRecord.get(1), csvRecord.get(2), csvRecord.get(3))) {
                     var user = new User(
                             csvRecord.get(0),
                             csvRecord.get(1),
@@ -52,6 +53,7 @@ public class UserHelper {
                     );
                     users.add(user);
                 }
+                rowNumber++;
             }
             return users;
         } catch (IOException e) {

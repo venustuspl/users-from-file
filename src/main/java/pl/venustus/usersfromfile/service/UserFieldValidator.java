@@ -14,7 +14,7 @@ public class UserFieldValidator {
         return Pattern.matches("^\\d{9}$", phoneNumber);
     }
 
-    public boolean isCSVRecordValidForSave(String firstName, String lastName, String birthDate, String phoneNumber) {
+    public boolean isCSVRecordValidForSave(Integer rowNumber, String firstName, String lastName, String birthDate, String phoneNumber) {
         var logMessage = new StringBuilder();
         if (firstName.isEmpty()) {
             logMessage.append(" first_name is empty");
@@ -29,7 +29,7 @@ public class UserFieldValidator {
             logMessage.append(" phone_no is not empty and hasn't 9 digits");
         }
         if (logMessage.length() != 0) {
-            LOGGER.log(Level.WARNING, "Row: " + firstName + " " + lastName + " " + birthDate + " " + phoneNumber + " will not be saved, because " + logMessage);
+            LOGGER.log(Level.WARNING, "Row " + rowNumber + " " + firstName + " " + lastName + " " + birthDate + " " + phoneNumber + " will not be saved, because " + logMessage);
             return false;
         }
         return true;
